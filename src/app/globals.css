@@ -1,0 +1,184 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --brand-black: #030712;
+    --brand-surface: #0b0f19;
+    --brand-card: rgba(15, 23, 42, 0.65);
+    --brand-gold-500: #eab308;
+    --brand-gold-400: #facc15;
+    --brand-gold-300: #fde047;
+  }
+
+  html {
+    direction: rtl;
+    text-align: right;
+    scroll-behavior: smooth;
+    font-family: var(--font-vazirmatn), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color-scheme: dark;
+    background-color: #030712;
+  }
+
+  body {
+    background-color: #030712;
+    color: #f8fafc;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: clip;
+    selection-background-color: #eab308;
+    selection-color: #000000;
+  }
+}
+
+/* ====================================================================
+   HIGH-PERFORMANCE DARK LUXURY DESIGN SYSTEM
+   Optimized for ultra-fast rendering on all devices (mobile & desktop)
+   ==================================================================== */
+
+/* Primary Dark Glass Panel */
+.glass-panel {
+  background: rgba(13, 19, 33, 0.75) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Deep Obsidian Dark Glass */
+.glass-panel-dark {
+  background: rgba(4, 7, 15, 0.85) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border: 1px solid rgba(234, 179, 8, 0.15) !important;
+  box-shadow: 0 12px 35px -10px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Golden Glowing Glass Panel */
+.glass-panel-gold {
+  background: rgba(234, 179, 8, 0.06) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(234, 179, 8, 0.25) !important;
+  box-shadow: 0 10px 25px -8px rgba(234, 179, 8, 0.12) !important;
+}
+
+/* Glass Card with Hover */
+.glass-card-hover {
+  transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease !important;
+}
+
+.glass-card-hover:hover {
+  transform: translateY(-3px);
+  background: rgba(18, 26, 44, 0.85) !important;
+  border-color: rgba(234, 179, 8, 0.4) !important;
+}
+
+/* Dark Glass Inputs */
+.glass-input {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  color: #f8fafc !important;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.glass-input:focus {
+  background: rgba(255, 255, 255, 0.07) !important;
+  border-color: rgba(234, 179, 8, 0.8) !important;
+  box-shadow: 0 0 0 2px rgba(234, 179, 8, 0.2) !important;
+  outline: none;
+}
+
+.glass-input option {
+  background-color: #0b1120 !important;
+  color: #f8fafc !important;
+}
+
+/* Lightweight Ambient Background (No fixed attachment to avoid mobile jank) */
+.dark-mesh-bg {
+  background-color: #030712;
+  background-image: 
+    radial-gradient(circle at 10% 10%, rgba(234, 179, 8, 0.06) 0px, transparent 40%),
+    radial-gradient(circle at 90% 10%, rgba(14, 116, 144, 0.06) 0px, transparent 40%),
+    radial-gradient(circle at 50% 90%, rgba(30, 58, 138, 0.05) 0px, transparent 40%);
+}
+
+.glass-mesh-bg {
+  background-color: #030712;
+  background-image: 
+    radial-gradient(circle at 20% 20%, rgba(234, 179, 8, 0.05) 0%, transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(56, 189, 248, 0.04) 0%, transparent 40%);
+}
+
+/* Luxury Gold Button */
+.gold-glow-btn {
+  background: linear-gradient(135deg, #facc15 0%, #eab308 50%, #ca8a04 100%);
+  color: #030712;
+  font-weight: 900;
+  box-shadow: 0 6px 20px rgba(234, 179, 8, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.gold-glow-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 25px rgba(234, 179, 8, 0.35);
+}
+
+/* Gold Gradient Text */
+.gold-gradient-text {
+  background: linear-gradient(135deg, #fef08a 0%, #eab308 50%, #ca8a04 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #030712;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(234, 179, 8, 0.3);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(234, 179, 8, 0.6);
+}
+
+/* Official Voucher Print Styles for Crisp A4 Printing & Single-Sheet PDF */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 8mm;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  header, footer, nav, .print\:hidden {
+    display: none !important;
+  }
+
+  .voucher-printable {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    border: 2px solid #000000 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .voucher-printable * {
+    color: #0f172a !important;
+    text-shadow: none !important;
+  }
+}
