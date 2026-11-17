@@ -91,7 +91,7 @@ export default async function VoucherPage({ params }: VoucherPageProps) {
       id: booking.hotel_id,
       name: 'هتل تابان تهران',
       stars: 4,
-      address: 'تهران، خیابان نجات‌اللهی، کوچه مراغه‌ای، پلاک ۱۲',
+      address: 'تهران، خیابان انقلاب، ضلع غربی میدان فردوسی، کوچه شاهرود، پلاک ۱',
       phone: '+98 21 9100 8899',
     },
     room: room || {

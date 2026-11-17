@@ -135,7 +135,7 @@ export default async function AboutPage() {
               </h2>
 
               <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed">
-                هتل تابان تهران واقع در قلب منطقه تجاری و دیپلماتیک (خیابان سپهبد قرنی / نجات‌اللهی ویلا، کوچه مراغه‌ای، پلاک ۱۲) با دسترسی استثنایی به سفارت‌خانه‌ها، مراکز بیمارستانی و دانشگاهی، خطوط مترو و راه‌های مواصلاتی اصلی، انتخابی بی‌نظیر برای مسافران کاری و گردشگران به شمار می‌رود.
+                هتل تابان تهران واقع در قلب منطقه تجاری و تاریخی پایتخت (خیابان انقلاب، ضلع غربی میدان فردوسی، کوچه شاهرود، پلاک ۱) با دسترسی استثنایی و مستقیم به ایستگاه مترو فردوسی، سفارت‌خانه‌ها، مراکز اداری، تجاری و راه‌های مواصلاتی اصلی، انتخابی بی‌نظیر برای مسافران کاری و گردشگران به شمار می‌رود.
               </p>
 
               <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed">
@@ -143,10 +143,15 @@ export default async function AboutPage() {
               </p>
 
               <div className="pt-2 flex flex-wrap gap-4 text-xs font-bold">
-                <div className="flex items-center gap-2 text-neutral-300">
+                <a
+                  href="https://maps.app.goo.gl/hmhZz2Xv6CSnqX3x8"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-2 text-neutral-300 hover:text-amber-400 transition-colors"
+                >
                   <MapPin className="w-4 h-4 text-amber-400" />
-                  <span>خیابان نجات‌اللهی، کوچه مراغه‌ای، پلاک ۱۲</span>
-                </div>
+                  <span>تهران، میدان فردوسی، کوچه شاهرود، پلاک ۱</span>
+                </a>
                 <div className="flex items-center gap-2 text-neutral-300">
                   <PhoneCall className="w-4 h-4 text-amber-400" />
                   <span>۰۲۱-۹۱۰۰۸۸۹۹</span>

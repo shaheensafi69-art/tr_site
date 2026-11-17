@@ -324,9 +324,30 @@ export default function Footer() {
               </div>
 
               {/* Central Office Address */}
-              <div className="flex items-start gap-2.5 leading-relaxed">
-                <MapPin className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
-                <span>تهران، خیابان استاد نجات‌اللهی (ویلا)، کوچه مراغه‌ای، پلاک ۱۲، رزرواسیون تهران‌روم</span>
+              <a
+                href="https://maps.app.goo.gl/hmhZz2Xv6CSnqX3x8"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-start gap-2.5 leading-relaxed hover:text-amber-400 transition-colors group cursor-pointer"
+                title="مشاهده موقعیت مکانی در گوگل مپ (Google Maps)"
+              >
+                <MapPin className="w-4 h-4 text-amber-400 shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
+                <span className="text-[11px] text-neutral-300 group-hover:text-amber-300">
+                  تهران، خیابان انقلاب، ضلع غربی میدان فردوسی، کوچه شاهرود، پلاک ۱ (ساختمان تهران‌روم / هتل تابان)
+                </span>
+              </a>
+
+              {/* Direct Maps Link Badge */}
+              <div>
+                <a
+                  href="https://maps.app.goo.gl/hmhZz2Xv6CSnqX3x8"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1.5 text-[10px] font-bold text-amber-400 hover:text-amber-300 bg-amber-400/10 hover:bg-amber-400/20 px-2.5 py-1 rounded-lg border border-amber-400/20 transition-all"
+                >
+                  <MapPin className="w-3 h-3 text-amber-400" />
+                  <span>مسیریابی در نقشه گوگل (Google Maps)</span>
+                </a>
               </div>
 
               {/* Trust & Guarantee Box */}

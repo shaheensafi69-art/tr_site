@@ -162,21 +162,26 @@ export default function ContactPage() {
           {/* Location & Details */}
           <div className="glass-panel-dark rounded-3xl p-6 sm:p-8 border border-white/10 shadow-xl flex flex-col justify-between">
             <div className="space-y-4">
-              <h2 className="text-lg font-black text-white">
-                دفتر رزرواسیون و هتل تابان
-              </h2>
+              <div className="flex items-center gap-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse" />
+                <h2 className="text-lg font-black text-white">
+                  دفتر مرکزی رزرواسیون تهران‌روم و هتل تابان
+                </h2>
+              </div>
               <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed">
-                مقر هتل تابان در مرکز دیپلماتیک و تجاری تهران واقع شده و کمتر از ۵ دقیقه با ایستگاه‌های مترو فاصله دارد.
+                مقر رزرواسیون پلتفرم تهران‌روم در قلب تاریخی و تجاری تهران (میدان فردوسی) واقع شده و کمتر از ۲ دقیقه پیاده با ایستگاه مترو فردوسی فاصله دارد.
               </p>
 
               <div className="space-y-3 pt-2 text-xs text-neutral-300">
                 <div className="flex items-start gap-2.5">
                   <MapPin className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
-                  <span>تهران، خیابان نجات‌اللهی (ویلا)، کوچه مراغه‌ای، پلاک ۱۲</span>
+                  <span className="font-semibold text-white">
+                    تهران، خیابان انقلاب، ضلع غربی میدان فردوسی، کوچه شاهرود، پلاک ۱
+                  </span>
                 </div>
                 <div className="flex items-center gap-2.5">
                   <Clock className="w-4 h-4 text-amber-400 shrink-0" />
-                  <span>پذیرش هتل: ۲۴ ساعته در تمام روزهای سال</span>
+                  <span>پذیرش و رزرواسیون: ۲۴ ساعته در تمام روزهای هفته</span>
                 </div>
                 <div className="flex items-center gap-2.5">
                   <Mail className="w-4 h-4 text-amber-400 shrink-0" />
@@ -185,12 +190,28 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <div className="pt-6">
-              <div className="h-44 rounded-2xl bg-neutral-900 border border-white/10 flex flex-col items-center justify-center text-center p-4">
-                <MapPin className="w-8 h-8 text-rose-500 mb-2 animate-bounce" />
-                <span className="text-xs font-bold text-white">هتل تابان تهران</span>
-                <span className="text-[11px] text-neutral-400">۳۵.۷۰۴۲° شمالی, ۵۱.۴۱۶۸° شرقی</span>
+            <div className="pt-6 space-y-3">
+              {/* Google Map Preview / Iframe */}
+              <div className="relative h-48 rounded-2xl overflow-hidden border border-white/10 bg-neutral-900 group">
+                <iframe
+                  title="موقعیت مکانی هتل تابان و تهران‌روم در گوگل مپ"
+                  src="https://maps.google.com/maps?q=35.7021727,51.4178863&hl=fa&z=17&output=embed"
+                  className="w-full h-full border-0 filter contrast-125 opacity-90 group-hover:opacity-100 transition-opacity"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
               </div>
+
+              {/* Direct Navigation Button */}
+              <a
+                href="https://maps.app.goo.gl/hmhZz2Xv6CSnqX3x8"
+                target="_blank"
+                rel="noreferrer"
+                className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 border border-amber-400/40 text-amber-300 hover:text-amber-200 text-xs font-bold transition-all shadow-lg"
+              >
+                <MapPin className="w-4 h-4 text-amber-400" />
+                <span>مسیریابی مستقیم در گوگل مپ (Google Maps)</span>
+              </a>
             </div>
           </div>
         </div>

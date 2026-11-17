@@ -437,7 +437,7 @@ export default function HotelClientView({ hotel, rooms }: HotelClientViewProps) 
               <a
                 href={
                   hotel.google_maps_url ||
-                  `https://www.google.com/maps/dir//Taban+Hotel,+PC29%2BV56+District+6,+Tehran,+Iran/@35.7021541,51.417652,17z?entry=ttu`
+                  'https://maps.app.goo.gl/hmhZz2Xv6CSnqX3x8'
                 }
                 target="_blank"
                 rel="noreferrer"
