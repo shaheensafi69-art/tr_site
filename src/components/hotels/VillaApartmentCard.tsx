@@ -26,6 +26,10 @@ export interface VillaApartmentItem {
   property_type: 'villa' | 'apartment';
   name: string;
   slug: string;
+  province_id?: string;
+  city_id?: string;
+  province?: { id: string; name: string; slug: string };
+  city?: { id: string; name: string; slug: string };
   location_area: string;
   address: string;
   bedrooms_count: number;

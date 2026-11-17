@@ -53,22 +53,34 @@ export default function SearchHeroBox() {
   const [adults, setAdults] = useState<number>(2);
   const [guestsDropdownOpen, setGuestsDropdownOpen] = useState(false);
 
-  // Published hotels from DB
+  // Published hotels and active cities from DB
   const [hotels, setHotels] = useState<{ id: string; name: string; stars: number; slug: string }[]>([]);
+  const [cities, setCities] = useState<{ id: string; name: string; slug: string }[]>([]);
 
   useEffect(() => {
-    async function loadHotels() {
-      const { data } = await supabase
-        .from('hotels')
-        .select('id, name, stars, slug')
-        .eq('is_published', true)
-        .order('stars', { ascending: false });
+    async function loadData() {
+      const [hotelsRes, citiesRes] = await Promise.all([
+        supabase
+          .from('hotels')
+          .select('id, name, stars, slug')
+          .eq('is_published', true)
+          .order('stars', { ascending: false }),
+        supabase
+          .from('cities')
+          .select('id, name, slug')
+          .eq('is_active', true)
+          .order('display_order', { ascending: true })
+          .order('name', { ascending: true }),
+      ]);
 
-      if (data && data.length > 0) {
-        setHotels(data);
+      if (hotelsRes.data && hotelsRes.data.length > 0) {
+        setHotels(hotelsRes.data);
+      }
+      if (citiesRes.data && citiesRes.data.length > 0) {
+        setCities(citiesRes.data);
       }
     }
-    loadHotels();
+    loadData();
   }, []);
 
   // Compute Jalali day/month/year for current checkIn and checkOut
@@ -157,7 +169,11 @@ export default function SearchHeroBox() {
     e.preventDefault();
     const params = new URLSearchParams();
     if (selectedDestination !== 'all') {
-      params.set('hotel', selectedDestination);
+      if (selectedDestination.startsWith('city:')) {
+        params.set('city', selectedDestination.replace('city:', ''));
+      } else {
+        params.set('hotel', selectedDestination);
+      }
     }
     params.set('type', stayType);
     params.set('checkIn', checkInDate);
@@ -173,10 +189,15 @@ export default function SearchHeroBox() {
   };
 
   const destinationLabel = useMemo(() => {
-    if (selectedDestination === 'all') return 'تمام هتل‌های برتر تهران';
+    if (selectedDestination === 'all') return 'همه مقاصد (کل کشور)';
+    if (selectedDestination.startsWith('city:')) {
+      const slug = selectedDestination.replace('city:', '');
+      const foundCity = cities.find((c) => c.slug === slug || c.id === slug);
+      return foundCity ? `شهر ${foundCity.name}` : 'انتخاب مقصد';
+    }
     const found = hotels.find((h) => h.id === selectedDestination);
-    return found ? `${found.name} (${found.stars} ستاره)` : 'تهران';
-  }, [selectedDestination, hotels]);
+    return found ? `${found.name} (${toPersianDigits(found.stars)} ستاره)` : 'تهران';
+  }, [selectedDestination, hotels, cities]);
 
   return (
     <div className="w-full max-w-5xl mx-auto glass-panel-dark rounded-3xl p-6 sm:p-8 shadow-[0_25px_60px_rgba(0,0,0,0.9)] border border-amber-400/20 text-slate-100 relative">
@@ -236,11 +257,13 @@ export default function SearchHeroBox() {
 
           {/* Destination Dropdown */}
           {destDropdownOpen && (
-            <div className="absolute top-full mt-2 w-72 sm:w-80 glass-panel-dark rounded-2xl shadow-2xl z-50 p-2 max-h-80 overflow-y-auto border border-white/[0.15]">
-              <div className="p-2 border-b border-white/[0.08] text-xs text-neutral-400 font-semibold">
-                انتخاب اقامتگاه در پایتخت
+            <div className="absolute top-full mt-2 w-72 sm:w-80 glass-panel-dark rounded-2xl shadow-2xl z-50 p-2 max-h-96 overflow-y-auto border border-white/[0.15]">
+              <div className="p-2 border-b border-white/[0.08] text-xs text-neutral-400 font-semibold flex items-center justify-between">
+                <span>انتخاب مقصد یا هتل</span>
+                <span className="text-[10px] text-amber-400">سراسر کشور</span>
               </div>
               <div className="py-1 space-y-1">
+                {/* Option: All Destinations */}
                 <button
                   type="button"
                   onClick={() => {
@@ -254,38 +277,81 @@ export default function SearchHeroBox() {
                   }`}
                 >
                   <div className="flex items-center gap-2">
-                    <Building className="w-3.5 h-3.5 text-amber-400" />
-                    <span>تمام هتل‌های برتر تهران</span>
+                    <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                    <span>همه مقاصد و اقامتگاه‌ها (کل کشور)</span>
                   </div>
                   {selectedDestination === 'all' && <Check className="w-3.5 h-3.5 text-amber-400" />}
                 </button>
 
-                {hotels.map((h) => {
-                  const isSelected = selectedDestination === h.id;
-                  return (
-                    <button
-                      key={h.id}
-                      type="button"
-                      onClick={() => {
-                        setSelectedDestination(h.id);
-                        setDestDropdownOpen(false);
-                      }}
-                      className={`w-full text-right p-2.5 rounded-xl text-xs flex items-center justify-between transition-colors ${
-                        isSelected
-                          ? 'bg-amber-400/20 text-amber-300 font-bold border border-amber-400/30'
-                          : 'text-neutral-300 hover:bg-white/[0.06]'
-                      }`}
-                    >
-                      <div>
-                        <div className="font-bold text-white">{h.name}</div>
-                        <div className="text-[10px] text-amber-400 flex items-center gap-0.5">
-                          {'★'.repeat(h.stars || 4)} {toPersianDigits(h.stars || 4)} ستاره
-                        </div>
-                      </div>
-                      {isSelected && <Check className="w-3.5 h-3.5 text-amber-400" />}
-                    </button>
-                  );
-                })}
+                {/* Cities Group */}
+                {cities.length > 0 && (
+                  <div className="pt-2">
+                    <div className="text-[10px] text-amber-300 font-bold px-2.5 py-1 bg-amber-400/10 rounded-lg mb-1 flex items-center gap-1">
+                      <MapPin className="w-3 h-3 text-amber-400" />
+                      <span>شهرهای فعال و مقاصد توریستی</span>
+                    </div>
+                    {cities.map((c) => {
+                      const isSelected = selectedDestination === `city:${c.slug}`;
+                      return (
+                        <button
+                          key={c.id}
+                          type="button"
+                          onClick={() => {
+                            setSelectedDestination(`city:${c.slug}`);
+                            setDestDropdownOpen(false);
+                          }}
+                          className={`w-full text-right p-2 rounded-xl text-xs flex items-center justify-between transition-colors ${
+                            isSelected
+                              ? 'bg-amber-400/20 text-amber-300 font-bold border border-amber-400/30'
+                              : 'text-neutral-300 hover:bg-white/[0.06]'
+                          }`}
+                        >
+                          <div className="flex items-center gap-2">
+                            <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+                            <span className="font-bold text-white">شهر {c.name}</span>
+                          </div>
+                          {isSelected && <Check className="w-3.5 h-3.5 text-amber-400" />}
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+
+                {/* Hotels Group */}
+                {hotels.length > 0 && (
+                  <div className="pt-2">
+                    <div className="text-[10px] text-neutral-400 font-bold px-2.5 py-1 mb-1 flex items-center gap-1 border-t border-white/[0.06] pt-2">
+                      <Building className="w-3 h-3 text-neutral-400" />
+                      <span>هتل‌های شاخص</span>
+                    </div>
+                    {hotels.map((h) => {
+                      const isSelected = selectedDestination === h.id;
+                      return (
+                        <button
+                          key={h.id}
+                          type="button"
+                          onClick={() => {
+                            setSelectedDestination(h.id);
+                            setDestDropdownOpen(false);
+                          }}
+                          className={`w-full text-right p-2.5 rounded-xl text-xs flex items-center justify-between transition-colors ${
+                            isSelected
+                              ? 'bg-amber-400/20 text-amber-300 font-bold border border-amber-400/30'
+                              : 'text-neutral-300 hover:bg-white/[0.06]'
+                          }`}
+                        >
+                          <div>
+                            <div className="font-bold text-white">{h.name}</div>
+                            <div className="text-[10px] text-amber-400 flex items-center gap-0.5">
+                              {'★'.repeat(h.stars || 4)} {toPersianDigits(h.stars || 4)} ستاره
+                            </div>
+                          </div>
+                          {isSelected && <Check className="w-3.5 h-3.5 text-amber-400" />}
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
               </div>
             </div>
           )}

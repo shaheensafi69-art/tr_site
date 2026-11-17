@@ -8,10 +8,18 @@ import HotelsFilterView from './HotelsFilterView';
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
-export default async function HotelsPage() {
+interface PageProps {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}
+
+export default async function HotelsPage({ searchParams }: PageProps) {
+  const resolvedParams = await searchParams;
+  const initialCity = typeof resolvedParams?.city === 'string' ? resolvedParams.city : 'all';
+  const initialHotel = typeof resolvedParams?.hotel === 'string' ? resolvedParams.hotel : undefined;
+
   const supabase = createServerClient();
 
-  // 1. Fetch hotels
+  // 1. Fetch hotels with province and city
   const { data: hotelsData } = await supabase
     .from('hotels')
     .select(`
@@ -22,15 +30,35 @@ export default async function HotelsPage() {
     .eq('is_published', true)
     .order('is_featured', { ascending: false });
 
-  // 2. Fetch villas and furnished apartments
+  // 2. Fetch villas and furnished apartments with province and city
   const { data: villasData } = await supabase
     .from('villas_apartments')
-    .select('*')
+    .select(`
+      *,
+      province:provinces(*),
+      city:cities(*)
+    `)
     .eq('is_published', true)
     .order('is_featured', { ascending: false });
 
+  // 3. Fetch all active cities
+  const { data: citiesData } = await supabase
+    .from('cities')
+    .select(`
+      id,
+      name,
+      slug,
+      province_id,
+      display_order,
+      province:provinces(id, name, slug)
+    `)
+    .eq('is_active', true)
+    .order('display_order', { ascending: true })
+    .order('name', { ascending: true });
+
   const hotels: HotelWithDetails[] = (hotelsData as any) || [];
   const villas: any[] = (villasData as any) || [];
+  const cities: any[] = (citiesData as any) || [];
 
   return (
     <div className="min-h-screen dark-mesh-bg pt-28 pb-20 text-white">
@@ -42,22 +70,23 @@ export default async function HotelsPage() {
               صفحه اصلی
             </Link>
             <span>/</span>
-            <span className="text-white font-bold">هتل‌ها، ویلاها و اقامتگاه‌های تهران</span>
+            <span className="text-white font-bold">هتل‌ها، ویلاها و اقامتگاه‌های منتخب</span>
           </div>
 
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div>
               <h1 className="text-2xl sm:text-4xl font-black text-white">
-                رزرو آنلاین هتل‌ها، ویلاها و آپارتمان‌های مبله
+                رزرو آنلاین هتل‌ها، ویلاها و اقامتگاه‌های سراسر کشور
               </h1>
               <p className="text-xs sm:text-sm text-neutral-400 mt-1.5">
-                فیلتر هتل‌های ۵ و ۴ ستاره، ویلاهای استخردار لواسان و کردان، و پنت‌هاوس‌های مبله با تضمین کمترین نرخ
+                فیلتر و مقایسه هوشمند هتل‌های برتر، ویلاهای استخردار و سوئیت‌های مبله با تضمین کمترین نرخ و تایید آنی
               </p>
             </div>
 
             <div className="flex items-center gap-2">
-              <span className="text-xs bg-amber-400/10 text-amber-300 font-bold px-3 py-1.5 rounded-full border border-amber-400/20">
-                پوشش فعال: تهران، لواسان، کردان
+              <span className="text-xs bg-amber-400/10 text-amber-300 font-bold px-3 py-1.5 rounded-full border border-amber-400/20 flex items-center gap-1.5">
+                <MapPin className="w-3.5 h-3.5 text-amber-400" />
+                <span>پوشش مقاصد برتر کشور</span>
               </span>
             </div>
           </div>
@@ -75,14 +104,22 @@ export default async function HotelsPage() {
                 </div>
               </div>
 
-              {/* Province / City */}
+              {/* Destination Coverage */}
               <div>
-                <h4 className="text-xs font-bold text-neutral-300 mb-2">استان مقصد</h4>
-                <div className="p-3 bg-white/[0.04] border border-white/10 rounded-xl text-xs font-bold text-white flex items-center justify-between">
-                  <span>استان تهران (پایتخت و حومه)</span>
-                  <span className="text-[10px] text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-md font-bold border border-emerald-500/20">
-                    فعال
-                  </span>
+                <h4 className="text-xs font-bold text-neutral-300 mb-2">شهرهای فعال سامانه</h4>
+                <div className="flex flex-wrap gap-1.5">
+                  {cities.length > 0 ? (
+                    cities.map((c) => (
+                      <span
+                        key={c.id}
+                        className="text-[11px] bg-white/[0.05] border border-white/10 text-neutral-300 px-2.5 py-1 rounded-xl font-medium"
+                      >
+                        {c.name}
+                      </span>
+                    ))
+                  ) : (
+                    <span className="text-xs text-neutral-400">تهران و حومه</span>
+                  )}
                 </div>
               </div>
 
@@ -92,11 +129,11 @@ export default async function HotelsPage() {
                 <ul className="space-y-2 text-xs text-neutral-300">
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
-                    <span>هتل‌های ۵، ۴ و ۳ ستاره برتر پایتخت</span>
+                    <span>هتل‌های ۵، ۴ و ۳ ستاره برتر</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-sky-400" />
-                    <span>ویلاهای لوکس استخردار لواسان و کردان</span>
+                    <span>ویلاهای استخردار لوکس و باغ‌های اختصاصی</span>
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
@@ -133,7 +170,13 @@ export default async function HotelsPage() {
 
           {/* Interactive Star Filter & Hotel / Villa Listing Results */}
           <div className="lg:col-span-3">
-            <HotelsFilterView initialHotels={hotels} initialVillas={villas} />
+            <HotelsFilterView
+              initialHotels={hotels}
+              initialVillas={villas}
+              initialCities={cities}
+              defaultCity={initialCity}
+              defaultHotelId={initialHotel}
+            />
           </div>
         </div>
       </div>
