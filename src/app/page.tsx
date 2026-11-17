@@ -299,11 +299,12 @@ export default async function HomePage() {
             </Link>
 
             <a
-              href="tel:02191008899"
+              href="tel:+989357122978"
               className="bg-white/10 hover:bg-white/20 text-white font-bold px-6 py-4 rounded-2xl text-xs sm:text-sm border border-white/15 transition-all flex items-center gap-2"
+              title="تماس مستقیم با مدیریت و پذیرش هتل تابان"
             >
               <PhoneCall className="w-4 h-4 text-amber-400" />
-              <span>تماس تلفنی رزرواسیون</span>
+              <span>تماس با مدیر و پذیرش (۰۹۳۵۷۱۲۲۹۷۸)</span>
             </a>
           </div>
         </div>

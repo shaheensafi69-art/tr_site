@@ -303,11 +303,11 @@ function BookingTrackContent() {
                   </span>
                   <div className="flex items-center gap-2 shrink-0">
                     <a
-                      href="tel:+982191008899"
+                      href="tel:+989357122978"
                       className="font-mono font-bold text-amber-300 bg-white/5 hover:bg-white/10 px-3 py-1.5 rounded-xl border border-white/10"
                       dir="ltr"
                     >
-                      +98 21 9100 8899
+                      +98 935 712 2978
                     </a>
                     <Link
                       href={`/booking/cancel?code=${trackingData.booking.booking_code}&phone=${trackingData.customer?.phone || phone}`}
@@ -606,7 +606,7 @@ function BookingTrackContent() {
                 <ul className="list-disc list-inside space-y-1 pr-1 text-neutral-400 text-[11px] pt-1">
                   <li>همراه داشتن اصل کارت ملی هوشمند یا شناسنامه برای اتباع ایرانی و اصل گذرنامه معتبر برای اتباع خارجی الزامی است.</li>
                   <li>پذیرش زوجین محترم با ارائه مدارک شناسایی معتبر یا صیغه‌نامه دارای مهر برجسته صورت می‌پذیرد.</li>
-                  <li>شماره تماس پشتیبانی ۲۴ ساعته تهران‌روم: <span className="font-mono text-neutral-300" dir="ltr">+98 21 9100 8899</span></li>
+                  <li>شماره تماس مدیر و پذیرش هتل تابان / تهران‌روم: <a href="tel:+989357122978" className="font-mono text-amber-300 hover:underline" dir="ltr">+98 935 712 2978</a></li>
                 </ul>
               )}
             </div>

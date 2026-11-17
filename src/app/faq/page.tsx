@@ -105,11 +105,11 @@ export default function FAQPage() {
 
           <div className="flex items-center gap-3 shrink-0">
             <a
-              href="tel:02191008899"
+              href="tel:+989357122978"
               className="gold-glow-btn px-5 py-2.5 rounded-xl text-xs flex items-center gap-2 font-black"
             >
               <Phone className="w-3.5 h-3.5" />
-              <span>۰۲۱-۹۱۰۰۸۸۹۹</span>
+              <span>۰۹۳۵ ۷۱۲ ۲۹۷۸</span>
             </a>
 
             <a

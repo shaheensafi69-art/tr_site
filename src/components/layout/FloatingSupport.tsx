@@ -25,7 +25,7 @@ export default function FloatingSupport() {
           </div>
 
           <a
-            href="https://wa.me/989123456789"
+            href="https://wa.me/989357122978"
             target="_blank"
             rel="noreferrer"
             className="flex items-center gap-3 p-2.5 rounded-2xl bg-slate-800/80 hover:bg-emerald-600/20 text-emerald-400 border border-emerald-500/20 hover:border-emerald-500/40 text-xs font-bold transition-all"
@@ -34,8 +34,8 @@ export default function FloatingSupport() {
               <MessageSquare className="w-4 h-4" />
             </div>
             <div>
-              <span className="block text-white">پشتیبانی در واتساپ</span>
-              <span className="text-[10px] text-emerald-400">پاسخگویی سریع</span>
+              <span className="block text-white">پشتیبانی واتساپ (مدیریت)</span>
+              <span className="text-[10px] text-emerald-400 font-mono" dir="ltr">+98 935 712 2978</span>
             </div>
           </a>
 
@@ -55,15 +55,15 @@ export default function FloatingSupport() {
           </a>
 
           <a
-            href="tel:+982191008899"
+            href="tel:+989357122978"
             className="flex items-center gap-3 p-2.5 rounded-2xl bg-slate-800/80 hover:bg-amber-600/20 text-amber-300 border border-amber-500/20 hover:border-amber-500/40 text-xs font-bold transition-all"
           >
             <div className="w-8 h-8 rounded-xl bg-amber-400/20 flex items-center justify-center">
               <PhoneCall className="w-4 h-4" />
             </div>
             <div>
-              <span className="block text-white">تماس تلفنی</span>
-              <span className="text-[10px] text-amber-300 font-mono" dir="ltr">+98 21 9100 8899</span>
+              <span className="block text-white">تماس مستقیم پذیرش و مدیر</span>
+              <span className="text-[10px] text-amber-300 font-mono" dir="ltr">+98 935 712 2978</span>
             </div>
           </a>
         </div>

@@ -437,7 +437,7 @@ function CancelBookingContent() {
                   {eligibility.reason}
                 </p>
                 <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/10 text-xs text-neutral-400 max-w-md mx-auto">
-                  در صورت وجود شرایط اضطراری پزشکی یا فورس ماژور، می‌توانید با واحد پشتیبانی شبانه‌روزی هتل تابان به شماره <span className="font-mono text-amber-300" dir="ltr">+98 21 9100 8899</span> تماس حاصل فرمایید.
+                  در صورت وجود شرایط اضطراری پزشکی یا فورس ماژور، می‌توانید با واحد پشتیبانی و مدیر هتل تابان به شماره <a href="tel:+989357122978" className="font-mono text-amber-300 hover:underline" dir="ltr">+98 935 712 2978</a> تماس حاصل فرمایید.
                 </div>
                 <div className="pt-2">
                   <button

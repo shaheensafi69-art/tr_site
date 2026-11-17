@@ -15,6 +15,18 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "**.r2.dev",
       },
+      {
+        protocol: "https",
+        hostname: "store.snapptrip.com",
+      },
+      {
+        protocol: "https",
+        hostname: "www.eghamat24.com",
+      },
+      {
+        protocol: "https",
+        hostname: "www.iran-booking.com",
+      },
     ],
   },
 };

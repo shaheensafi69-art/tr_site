@@ -53,9 +53,9 @@ export default function ContactPage() {
               <Phone className="w-6 h-6" />
             </div>
             <div>
-              <span className="text-[11px] text-neutral-400 font-bold block">تماس تلفنی مستقیم</span>
-              <a href="tel:02191008899" className="text-base font-bold text-white hover:text-amber-400 transition-colors" dir="ltr">
-                ۰۲۱ - ۹۱۰۰ ۸۸۹۹
+              <span className="text-[11px] text-neutral-400 font-bold block">تماس با مدیر و پذیرش</span>
+              <a href="tel:+989357122978" className="text-base font-bold text-white hover:text-amber-400 transition-colors" dir="ltr">
+                ۰۹۳۵ ۷۱۲ ۲۹۷۸
               </a>
             </div>
           </div>
@@ -65,8 +65,8 @@ export default function ContactPage() {
               <MessageSquare className="w-6 h-6" />
             </div>
             <div>
-              <span className="text-[11px] text-neutral-400 font-bold block">پشتیبانی واتساپ</span>
-              <a href="https://wa.me/989123456789" target="_blank" rel="noreferrer" className="text-base font-bold text-emerald-400 hover:underline">
+              <span className="text-[11px] text-neutral-400 font-bold block">واتساپ مدیریت و رزرو</span>
+              <a href="https://wa.me/989357122978" target="_blank" rel="noreferrer" className="text-base font-bold text-emerald-400 hover:underline">
                 شروع گفتگو در واتساپ
               </a>
             </div>

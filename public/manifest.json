@@ -1,0 +1,63 @@
+{
+  "id": "/",
+  "name": "تهران‌روم | سامانه جامع رزرواسیون هتل‌های تهران و ایران",
+  "short_name": "تهران‌روم",
+  "description": "سامانه هوشمند و مستقیم رزرواسیون آنلاین اتاق‌های هتل‌ها و اقامتگاه‌های برتر تهران و ایران با نرخ مصوب، تایید فوری و واچر رسمی.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#030712",
+  "theme_color": "#f59e0b",
+  "dir": "rtl",
+  "lang": "fa-IR",
+  "categories": ["travel", "hotel", "lifestyle"],
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "هتل‌ها و اقامتگاه‌ها",
+      "short_name": "هتل‌ها",
+      "description": "مشاهده و مقایسه هتل‌های لوکس",
+      "url": "/hotels",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "پیگیری رزرو و واچر",
+      "short_name": "پیگیری",
+      "description": "استعلام فوری رزرو با کد رهگیری",
+      "url": "/booking/track",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "تماس با رزرواسیون",
+      "short_name": "پشتیبانی",
+      "description": "ارتباط شبانه‌روزی با مدیر و پذیرش",
+      "url": "/contact",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

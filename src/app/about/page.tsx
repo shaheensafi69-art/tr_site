@@ -152,10 +152,13 @@ export default async function AboutPage() {
                   <MapPin className="w-4 h-4 text-amber-400" />
                   <span>تهران، میدان فردوسی، کوچه شاهرود، پلاک ۱</span>
                 </a>
-                <div className="flex items-center gap-2 text-neutral-300">
+                <a
+                  href="tel:+989357122978"
+                  className="flex items-center gap-2 text-neutral-300 hover:text-amber-400 transition-colors"
+                >
                   <PhoneCall className="w-4 h-4 text-amber-400" />
-                  <span>۰۲۱-۹۱۰۰۸۸۹۹</span>
-                </div>
+                  <span dir="ltr">۰۹۳۵ ۷۱۲ ۲۹۷۸</span>
+                </a>
               </div>
             </div>
 

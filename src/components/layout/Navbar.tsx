@@ -145,12 +145,13 @@ export default function Navbar() {
 
             {/* Quick Call with English country code */}
             <a
-              href="tel:+982191008899"
+              href="tel:+989357122978"
               className="gold-glow-btn px-4 py-2 rounded-xl text-xs font-black flex items-center gap-2 shadow-md shadow-amber-500/20 transition-all hover:scale-[1.02]"
               dir="ltr"
+              title="تماس مستقیم با مدیریت و پذیرش هتل تابان"
             >
               <PhoneCall className="w-3.5 h-3.5 shrink-0" />
-              <span className="font-mono text-xs font-black tracking-wider">+98 21 9100 8899</span>
+              <span className="font-mono text-xs font-black tracking-wider">+98 935 712 2978</span>
             </a>
           </div>
 
@@ -210,12 +211,12 @@ export default function Navbar() {
             </Link>
 
             <a
-              href="tel:+982191008899"
+              href="tel:+989357122978"
               className="w-full gold-glow-btn py-3 rounded-xl text-xs font-black flex items-center justify-center gap-2"
               dir="ltr"
             >
               <PhoneCall className="w-4 h-4" />
-              <span className="font-mono font-black">+98 21 9100 8899</span>
+              <span className="font-mono font-black">+98 935 712 2978</span>
             </a>
           </div>
         </div>

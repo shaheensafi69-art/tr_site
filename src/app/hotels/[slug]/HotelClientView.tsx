@@ -109,12 +109,13 @@ export default function HotelClientView({ hotel, rooms }: HotelClientViewProps) 
             </div>
 
             <a
-              href="tel:+982191008899"
+              href={`tel:${hotel.phone || '+989357122978'}`}
               className="gold-glow-btn px-5 py-3 rounded-2xl text-xs sm:text-sm font-black flex items-center gap-2"
               dir="ltr"
+              title="تماس مستقیم با مدیریت و پذیرش هتل تابان"
             >
               <Phone className="w-4 h-4 shrink-0" />
-              <span className="font-mono tracking-wider">+98 21 9100 8899</span>
+              <span className="font-mono tracking-wider">{hotel.phone || '+98 935 712 2978'}</span>
             </a>
           </div>
         </div>
@@ -402,12 +403,12 @@ export default function HotelClientView({ hotel, rooms }: HotelClientViewProps) 
 
               <div className="text-center pt-1 border-t border-white/5">
                 <a
-                  href="tel:+982191008899"
+                  href={`tel:${hotel.phone || '+989357122978'}`}
                   className="text-xs font-bold text-neutral-400 hover:text-amber-400 flex items-center justify-center gap-1.5 transition-colors"
                   dir="ltr"
                 >
                   <Phone className="w-3.5 h-3.5 text-amber-400" />
-                  <span className="font-mono">+98 21 9100 8899</span>
+                  <span className="font-mono">{hotel.phone || '+98 935 712 2978'}</span>
                 </a>
               </div>
             </div>

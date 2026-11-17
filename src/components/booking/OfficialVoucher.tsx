@@ -499,7 +499,7 @@ export default function OfficialVoucher({ data, isPrintOnly = false }: OfficialV
             <div className="flex items-center gap-4 text-slate-800 font-extrabold text-[11px]">
               <span className="flex items-center gap-1">
                 <Phone className="w-3.5 h-3.5 text-slate-950" />
-                <span dir="ltr" className="font-mono">{hotel.phone || '+98 21 9100 8899'}</span>
+                <span dir="ltr" className="font-mono">{hotel.phone || '+98 935 712 2978'}</span>
               </span>
               <span>پشتیبانی شبانه‌روزی ۲۴ ساعته</span>
             </div>

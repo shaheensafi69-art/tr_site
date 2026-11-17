@@ -216,7 +216,7 @@ export default function VillaApartmentCard({ item }: VillaApartmentCardProps) {
             )}
 
             <a
-              href={`tel:${item.phone || '+982191008899'}`}
+              href={`tel:${item.phone || '+989357122978'}`}
               className="px-5 py-2.5 rounded-2xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs flex items-center gap-2 shadow-lg shadow-amber-400/20 transition-all active:scale-95"
             >
               <Phone className="w-3.5 h-3.5" />

@@ -306,15 +306,15 @@ export default function Footer() {
             <div className="space-y-3.5 text-xs text-neutral-300">
               {/* Phone English with country code */}
               <div className="p-3.5 rounded-2xl bg-white/[0.04] border border-white/10 space-y-1">
-                <span className="text-[11px] text-neutral-400 block font-medium">خط تلفن رسمی پشتیبانی و رزرو:</span>
+                <span className="text-[11px] text-neutral-400 block font-medium">خط مستقیم مدیر و پذیرش هتل تابان:</span>
                 <a
-                  href="tel:+982191008899"
+                  href="tel:+989357122978"
                   className="text-base font-black text-amber-400 font-mono tracking-wider block hover:text-amber-300 transition-colors"
                   dir="ltr"
                 >
-                  +98 21 9100 8899
+                  +98 935 712 2978
                 </a>
-                <span className="text-[10px] text-emerald-400 block font-bold">پاسخگویی شبانه‌روزی ۷ روز هفته</span>
+                <span className="text-[10px] text-emerald-400 block font-bold">پاسخگویی شبانه‌روزی و هماهنگی رزرو</span>
               </div>
 
               {/* Email */}

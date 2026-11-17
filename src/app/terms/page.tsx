@@ -205,7 +205,7 @@ export default function TermsPage() {
             در صورت وجود هرگونه ابهام یا سوال پیرامون ضوابط، تیم پشتیبانی ۲۴ ساعته تهران‌روم پاسخگوی شماست:
           </p>
           <div className="flex items-center justify-center gap-4 text-xs font-bold text-amber-300 pt-1">
-            <span>شماره تماس هتل تابان: ۰۲۱-۹۱۰۰۸۸۹۹</span>
+            <a href="tel:+989357122978" className="hover:underline">شماره تماس مدیر و پذیرش هتل تابان: ۰۹۳۵ ۷۱۲ ۲۹۷۸</a>
             <span>•</span>
             <Link href="/contact" className="hover:underline">تماس با پشتیبانی آنلاین</Link>
           </div>
