@@ -57,8 +57,67 @@ export default async function HomePage() {
     .order('created_at', { ascending: false })
     .limit(3);
 
+  // Multi-engine SEO / GEO / AEO / XEO Structured Schema for Homepage
+  const homeJsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'ItemList',
+        itemListElement: hotels.map((h, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          name: h.name,
+          url: `https://tehranroom.com/hotels/${h.slug}`,
+          image: h.cover_image,
+        })),
+      },
+      {
+        '@type': 'FAQPage',
+        mainEntity: [
+          {
+            '@type': 'Question',
+            name: 'آدرس و موقعیت مکانی هتل تابان تهران کجاست؟',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'هتل تابان در مرکز شهر تهران، خیابان انقلاب، ضلع غربی میدان فردوسی، کوچه شاهرود، پلاک ۱ واقع شده و کمتر از ۲ دقیقه پیاده با ایستگاه مترو فردوسی فاصله دارد.',
+            },
+          },
+          {
+            '@type': 'Question',
+            name: 'شماره تلفن مستقیم مدیریت و پذیرش هتل تابان چیست؟',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'شماره مستقیم مدیریت و پذیرش هتل تابان ۰۹۳۵۷۱۲۲۹۷۸ (989357122978+) می‌باشد که به صورت شبانه‌روزی ۲۴ ساعته پاسخگوی میهمانان گرامی است.',
+            },
+          },
+          {
+            '@type': 'Question',
+            name: 'آیا امکان رزرو ساعتی اتاق در هتل تابان تهران وجود دارد؟',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'بله، هتل تابان امکان رزرو منعطف ساعتی (۳ ساعته، ۶ ساعته و ۱۲ ساعته) را برای اقامت‌های کوتاه و استراحت مسافران با تخفیف ویژه و تایید فوری فراهم کرده است.',
+            },
+          },
+          {
+            '@type': 'Question',
+            name: 'چگونه واچر قطعی رزرو خود را پیگیری و دریافت کنیم؟',
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: 'پس از ثبت رزرو، با وارد کردن کد رهگیری و شماره موبایل در بخش پیگیری رزرو سایت تهران‌روم (tehranroom.com/booking/track)، واچر رسمی و نسخه چاپی PDF بلافاصله قابل دریافت است.',
+            },
+          },
+        ],
+      },
+    ],
+  };
+
   return (
-    <div className="flex flex-col min-h-screen">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homeJsonLd) }}
+      />
+      <div className="flex flex-col min-h-screen">
       {/* 1. HERO SECTION WITH LUXURY VISUAL AMBIENCE */}
       <section className="relative min-h-[90vh] flex items-center justify-center pt-28 pb-20 px-4 sm:px-6 lg:px-8 bg-[#030712] text-white overflow-hidden">
         {/* Lightweight Ultra-Fast Luxury Visual from Database Hotel Image */}
@@ -310,5 +369,6 @@ export default async function HomePage() {
         </div>
       </section>
     </div>
+    </>
   );
 }

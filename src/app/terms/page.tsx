@@ -15,9 +15,12 @@ import {
 import { toPersianDigits } from '@/lib/currency/currency-utils';
 
 export const metadata = {
-  title: 'قوانین و مقررات رزرواسیون | TehranRoom',
+  title: 'قوانین و مقررات رسمی رزرواسیون هتل تابان و اقامتگاه‌های تهران‌روم',
   description:
-    'شرایط و ضوابط رسمی رزرواسیون، احراز هویت مسافران ایرانی و خارجی، مقررات اقامت روزانه و ساعتی و استرداد وجه در تهران‌روم.',
+    'شرایط و ضوابط رسمی رزرواسیون، مدارک محرمیت و احراز هویت مسافران، مقررات اقامت روزانه و ساعتی و استرداد وجه در تهران‌روم.',
+  alternates: {
+    canonical: 'https://tehranroom.com/terms',
+  },
 };
 
 export default function TermsPage() {

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Metadata } from 'next';
 import { createServerClient } from '@/lib/supabase/server';
 import { HotelWithDetails } from '@/types/hotel';
 import { Filter, SlidersHorizontal, MapPin, Building, Sparkles } from 'lucide-react';
@@ -7,6 +8,28 @@ import HotelsFilterView from './HotelsFilterView';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
+
+export const metadata: Metadata = {
+  title: 'رزرو آنلاین هتل‌ها و اقامتگاه‌های برتر تهران و ایران | تهران‌روم',
+  description: 'فهرست و مقایسه جامع هتل‌های برتر، هتل تابان تهران، ویلاهای استخردار و اقامتگاه‌های ویژه با تضمین کمترین نرخ، رزرو روزانه و ساعتی و تایید فوری واچر شرکتی.',
+  keywords: [
+    'رزرو هتل های تهران',
+    'هتل تابان تهران',
+    'هتل های میدان فردوسی',
+    'رزرو هتل ارزان تهران',
+    'رزرو ساعتی هتل در تهران',
+    'ویلا استخردار تهران',
+    'رزرو هتل با واچر رسمی',
+  ],
+  alternates: {
+    canonical: 'https://tehranroom.com/hotels',
+  },
+  openGraph: {
+    title: 'هتل‌ها و اقامتگاه‌های منتخب تهران و ایران | تهران‌روم',
+    description: 'مقایسه و رزرو لحظه‌ای هتل‌های منتخب و هتل تابان تهران با نرخ مصوب شرکتی.',
+    url: 'https://tehranroom.com/hotels',
+  },
+};
 
 interface PageProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;

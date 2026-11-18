@@ -7,8 +7,16 @@ export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 export const metadata = {
-  title: 'نظرات و تجربیات مسافران هتل‌های تهران | TehranRoom',
-  description: 'مشاهده نظرات، بازخوردها و امتیازات مسافران واقعی هتل‌های برتر تهران در پلتفرم تهران‌روم.',
+  title: 'نظرات، تجربیات و امتیازات واقعی مسافران هتل تابان تهران | تهران‌روم',
+  description: 'مشاهده بررسی‌ها، نظرات موثق و امتیازات میهمانان مقیم در هتل تابان تهران و اقامتگاه‌های منتخب در سامانه تهران‌روم.',
+  alternates: {
+    canonical: 'https://tehranroom.com/reviews',
+  },
+  openGraph: {
+    title: 'نظرات واقعی مسافران هتل تابان تهران | تهران‌روم',
+    description: 'تجربیات واقعی میهمانان از کیفیت خدمات، نظافت اتاق‌ها و موقعیت مکانی در میدان فردوسی.',
+    url: 'https://tehranroom.com/reviews',
+  },
 };
 
 export default async function ReviewsPage() {

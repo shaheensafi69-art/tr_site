@@ -23,9 +23,17 @@ import { toPersianDigits } from '@/lib/currency/currency-utils';
 import { createServerClient } from '@/lib/supabase/server';
 
 export const metadata = {
-  title: 'درباره ما | TehranRoom پلتفرم پیشرو رزرواسیون لوکس هتل',
+  title: 'درباره تهران‌روم و هتل تابان تهران | پلتفرم تخصصی رزرواسیون هتل',
   description:
-    'آشنایی با تاریخچه، ماموریت و استانداردهای پلتفرم رزرواسیون لوکس تهران‌روم و همکاری انحصاری با هتل ۴ ستاره تابان تهران.',
+    'آشنایی با پلتفرم رزرواسیون مستقیم تهران‌روم، موقعیت مکانی ممتاز هتل تابان در میدان فردوسی تهران، تضمین بهترین قیمت و صدور فوری واچر شرکتی.',
+  alternates: {
+    canonical: 'https://tehranroom.com/about',
+  },
+  openGraph: {
+    title: 'درباره تهران‌روم | رزرواسیون مطمئن هتل تابان تهران',
+    description: 'رزرو مستقیم و بدون واسطه با نرخ مصوب، اقامت روزانه و ساعتی در مرکز تهران.',
+    url: 'https://tehranroom.com/about',
+  },
 };
 
 export default async function AboutPage() {
