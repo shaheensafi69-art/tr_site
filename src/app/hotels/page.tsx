@@ -9,30 +9,54 @@ import HotelsFilterView from './HotelsFilterView';
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
-export const metadata: Metadata = {
-  title: 'رزرو آنلاین هتل‌ها و اقامتگاه‌های برتر تهران و ایران | تهران‌روم',
-  description: 'فهرست و مقایسه جامع هتل‌های برتر، هتل تابان تهران، ویلاهای استخردار و اقامتگاه‌های ویژه با تضمین کمترین نرخ، رزرو روزانه و ساعتی و تایید فوری واچر شرکتی.',
-  keywords: [
-    'رزرو هتل های تهران',
-    'هتل تابان تهران',
-    'هتل های میدان فردوسی',
-    'رزرو هتل ارزان تهران',
-    'رزرو ساعتی هتل در تهران',
-    'ویلا استخردار تهران',
-    'رزرو هتل با واچر رسمی',
-  ],
-  alternates: {
-    canonical: 'https://tehranroom.com/hotels',
-  },
-  openGraph: {
-    title: 'هتل‌ها و اقامتگاه‌های منتخب تهران و ایران | تهران‌روم',
-    description: 'مقایسه و رزرو لحظه‌ای هتل‌های منتخب و هتل تابان تهران با نرخ مصوب شرکتی.',
-    url: 'https://tehranroom.com/hotels',
-  },
-};
-
 interface PageProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}
+
+export async function generateMetadata({ searchParams }: PageProps): Promise<Metadata> {
+  const resolvedParams = await searchParams;
+  const city = typeof resolvedParams?.city === 'string' ? resolvedParams.city : undefined;
+  const type = typeof resolvedParams?.type === 'string' ? resolvedParams.type : undefined;
+
+  let title = 'رزرو آنلاین هتل‌ها، ویلاها و اقامتگاه‌های برتر تهران و ایران | تهران‌روم';
+  let description = 'فهرست و مقایسه جامع هتل‌های برتر، هتل تابان تهران، ویلاهای استخردار و اقامتگاه‌های ویژه با تضمین کمترین نرخ و تایید فوری واچر شرکتی.';
+
+  if (city && city !== 'all') {
+    const displayCity = city === 'tehran' ? 'تهران' : city;
+    title = `رزرو آنلاین هتل‌ها و اقامتگاه‌های شهر ${displayCity} | تهران‌روم`;
+    description = `مشاهده قیمت، امکانات و رزرو لحظه‌ای هتل‌ها، ویلاها و سوئیت‌های شهر ${displayCity} با تضمین بهترین قیمت و واچر رسمی.`;
+  } else if (type === 'villa') {
+    title = 'رزرو آنلاین ویلاهای استخردار لوکس، باغ و اقامتگاه‌های اطراف تهران | تهران‌روم';
+    description = 'اجاره مستقیم ویلاهای استخردار لوکس لواسان، کردان، دماوند و حومه تهران با استخر آبگرم، نظافت هتلی و تایید فوری.';
+  } else if (type === 'apartment') {
+    title = 'رزرو آپارتمان مبله و سوئیت‌های لوکس VIP در تهران | تهران‌روم';
+    description = 'اجاره روزانه و هفتگی آپارتمان‌های مبله شیک و پنت‌هاوس‌های مجلل در بهترین مناطق تهران با امکانات کامل رفاهی.';
+  }
+
+  const canonicalUrl = `https://tehranroom.com/hotels${city ? `?city=${city}` : ''}`;
+
+  return {
+    title,
+    description,
+    keywords: [
+      'رزرو هتل های تهران',
+      'هتل تابان تهران',
+      'هتل های میدان فردوسی',
+      'رزرو هتل ارزان تهران',
+      'رزرو ساعتی هتل در تهران',
+      'ویلا استخردار تهران',
+      'رزرو هتل با واچر رسمی',
+      city ? `هتل های ${city}` : 'هتل های ایران',
+    ],
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      title,
+      description,
+      url: canonicalUrl,
+    },
+  };
 }
 
 export default async function HotelsPage({ searchParams }: PageProps) {

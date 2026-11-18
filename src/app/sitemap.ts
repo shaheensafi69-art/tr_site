@@ -31,7 +31,29 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.85,
   }));
 
-  // 3. High-authority static routes
+  // 3. Category & Accommodation Type Filter URLs
+  const categoryUrls: MetadataRoute.Sitemap = [
+    {
+      url: `${baseUrl}/hotels?type=hotel`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/hotels?type=villa`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/hotels?type=apartment`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.85,
+    },
+  ];
+
+  // 4. High-authority static routes
   const staticUrls: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
@@ -95,6 +117,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  return [...staticUrls, ...hotelUrls, ...cityUrls];
+  return [...staticUrls, ...hotelUrls, ...cityUrls, ...categoryUrls];
 }
 

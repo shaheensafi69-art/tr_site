@@ -94,6 +94,9 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  verification: {
+    google: 'google697fddfdc0276823',
+  },
   other: {
     'geo.region': 'IR-07',
     'geo.placename': 'تهران، میدان فردوسی',
